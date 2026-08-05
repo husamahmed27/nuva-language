@@ -1,4 +1,3 @@
-// Variables and Scope test
 let message = "Global Message";
 let x = 10;
 let f = 3.14;

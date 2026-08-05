@@ -40,6 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const code = editor.getValue();
         if (!code.trim()) return;
 
+        const customInputElem = document.getElementById('custom-input');
+        const customInputText = customInputElem ? customInputElem.value : '';
+
         // UI State
         runBtn.classList.add('loading');
         runBtn.innerHTML = `
@@ -57,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ code })
+                body: JSON.stringify({ code, input: customInputText })
             });
 
             const data = await response.json();
