@@ -50,6 +50,15 @@ app.post('/api/run', (req, res) => {
     });
 });
 
+// Error handling middleware to catch unhandled exceptions
+app.use((err, req, res, next) => {
+    console.error('Unhandled Error:', err);
+    res.status(500).json({
+        error: 'Internal Server Error',
+        message: err.message || 'Something went wrong on the server'
+    });
+});
+
 app.listen(port, () => {
     console.log(`Nuva web playground listening at http://localhost:${port}`);
 });
