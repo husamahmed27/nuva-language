@@ -1,0 +1,20 @@
+show("Welcome to the Nuva Number Guessing Game!");
+
+let target = random(1, 10);
+let guessed = false;
+let attempts = 0;
+
+while (!guessed) {
+    let guess_str = ask("Guess a number between 1 and 10: ");
+    let guess = toNumber(guess_str);
+    attempts++;
+    
+    if (guess == target) {
+        show("Congratulations! You guessed it in " + attempts + " attempts!");
+        guessed = true;
+    } else if (guess < target) {
+        show("Too low! Try again.");
+    } else {
+        show("Too high! Try again.");
+    }
+}

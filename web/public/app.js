@@ -26,6 +26,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     const text = await response.text();
                     editor.setValue(text);
                     // Update header if needed, but not strictly required
+                    
+                    // Toggle visibility based on code content
+                    const customInputSection = document.getElementById('custom-input-section');
+                    if (customInputSection) {
+                        if (text.includes('ask(')) {
+                            customInputSection.style.display = 'flex';
+                        } else {
+                            customInputSection.style.display = 'none';
+                        }
+                    }
                 } else {
                     console.error('Failed to load example:', response.status);
                 }
@@ -39,6 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
     runBtn.addEventListener('click', async () => {
         const code = editor.getValue();
         if (!code.trim()) return;
+
+        const customInputElem = document.getElementById('custom-input');
+        const customInputText = customInputElem ? customInputElem.value : '';
 
         // UI State
         runBtn.classList.add('loading');
@@ -57,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ code })
+                body: JSON.stringify({ code, input: customInputText })
             });
 
             const data = await response.json();
