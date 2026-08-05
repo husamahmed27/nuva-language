@@ -1,0 +1,20 @@
+// Factorial and Fibonacci test
+func factorial(n) {
+    if (n <= 1) {
+        return 1;
+    }
+    return n * factorial(n - 1);
+}
+
+show("Factorial of 5 is:");
+show(factorial(5));
+
+func fibonacci(n) {
+    if (n <= 1) {
+        return n;
+    }
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+show("Fibonacci of 6 is:");
+show(fibonacci(6));

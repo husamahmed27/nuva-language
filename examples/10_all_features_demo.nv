@@ -1,0 +1,65 @@
+// 10. All Features Demo for Nuva
+
+// 1. Comments and Literals
+/* This is a multi-line comment
+   testing block comments. */
+let i = 42;
+let f = 3.1415;
+let s = "Nuva Language";
+let b = true;
+
+show("--- Variables & Types ---");
+show(i);
+show(f);
+show(s);
+show(b);
+
+// 2. Arithmetic and Compound Assignment
+show("--- Arithmetic ---");
+let a = 10;
+a += 5;
+a++;
+show("a should be 16: " + a);
+show("10 % 3 = " + (10 % 3));
+
+// 3. Conditionals & Logic
+show("--- Conditionals ---");
+if (a > 10 && b == true) {
+    show("a is greater than 10 and b is true");
+} else if (a == 10) {
+    show("a is exactly 10");
+} else {
+    show("fallback else");
+}
+
+// 4. Loops
+show("--- Loops ---");
+let count = 0;
+while (count < 3) {
+    count++;
+}
+show("While loop finished, count: " + count);
+
+for (let j = 0; j < 2; j++) {
+    show("For loop iteration: " + j);
+}
+
+repeat 2 times {
+    show("Repeat loop iteration");
+}
+
+// 5. Functions & Recursion
+show("--- Functions ---");
+func is_even(n) {
+    return (n % 2) == 0;
+}
+show("Is 42 even? " + is_even(42));
+show("Is 43 even? " + is_even(43));
+
+// 6. Built-ins
+show("--- Built-ins ---");
+let r = random(100, 200);
+show("Random number between 100 and 200: " + r);
+
+// IO testing (optional, requires stdin)
+show("All features successfully demonstrated (skipping ask() to remain non-interactive)");

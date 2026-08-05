@@ -1,0 +1,10 @@
+// Test repeat N times
+show("Repeating 3 times:");
+repeat 3 times {
+    show("hello repeat");
+}
+
+let count = 2;
+repeat count times {
+    show("dynamic repeat");
+}

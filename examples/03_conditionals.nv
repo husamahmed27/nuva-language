@@ -1,0 +1,38 @@
+// Test conditionals / logical ops
+let t = true;
+let f = false;
+
+show("t && f:");
+show(t && f);
+
+show("t || f:");
+show(t || f);
+
+show("!t:");
+show(!t);
+
+let a = 10;
+let b = 20;
+
+show("a == b:");
+show(a == b);
+
+show("a != b:");
+show(a != b);
+
+show("a < b:");
+show(a < b);
+
+show("a > b:");
+show(a > b);
+
+show("a <= 10:");
+show(a <= 10);
+
+show("b >= 20:");
+show(b >= 20);
+
+let s1 = "hello";
+let s2 = "hello";
+show("String equality:");
+show(s1 == s2);

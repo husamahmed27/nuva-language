@@ -1,0 +1,7 @@
+// Test while loop
+let x = 0;
+while (x < 5) {
+    show("x is: " + x);
+    x++;
+}
+show("done while");

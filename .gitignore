@@ -1,0 +1,6 @@
+src/lexer.c
+src/parser.c
+src/parser.h
+src/*.o
+nuva.exe
+nuva

@@ -1,0 +1,12 @@
+// Test ask, toNumber and output formatting
+let name = ask("What is your name? ");
+show("Hello, " + name + "!");
+
+let age_str = ask("How old are you? ");
+let age = toNumber(age_str);
+
+if (age >= 18) {
+    show("You are an adult.");
+} else {
+    show("You are a minor.");
+}

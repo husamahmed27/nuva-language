@@ -1,0 +1,25 @@
+// Variables and Scope test
+let message = "Global Message";
+let x = 10;
+let f = 3.14;
+let b = true;
+
+show(message);
+show(x);
+show(f);
+show(b);
+
+{
+    let x = 20;
+    show("Inside block:");
+    show(x);
+    let new_var = "Local";
+    show(new_var);
+    
+    // Modify global scope from inside
+    message = "Global Modified";
+}
+
+show("After block:");
+show(x);
+show(message);

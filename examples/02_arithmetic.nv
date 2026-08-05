@@ -1,0 +1,53 @@
+// Test arithmetic ops
+let a = 10;
+let b = 3;
+
+show("Addition:");
+show(a + b);
+
+show("Subtraction:");
+show(a - b);
+
+show("Multiplication:");
+show(a * b);
+
+show("Division:");
+show(a / b);
+
+show("Modulo:");
+show(a % b);
+
+show("Unary minus:");
+show(-a);
+
+let f1 = 10.5;
+let f2 = 2.5;
+show("Float addition:");
+show(f1 + f2);
+
+show("Float division:");
+show(f1 / f2);
+
+show("Mixed addition:");
+show(a + f1);
+
+show("String concat:");
+show("Hello " + "World");
+show("Value is: " + a);
+
+let c = 5;
+c += 10;
+show("Compound +=:");
+show(c);
+
+c *= 2;
+show("Compound *=:");
+show(c);
+
+c++;
+show("Postfix ++:");
+show(c);
+
+c--;
+show("Postfix --:");
+show(c);

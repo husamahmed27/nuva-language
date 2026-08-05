@@ -1,0 +1,148 @@
+Nuva Language Manual
+====================
+
+1. Prerequisites & Installation
+-------------------------------
+To compile Nuva from source, you need a C compiler (GCC/Clang), GNU Make, Flex, and Bison.
+
+Ubuntu/Debian:
+  sudo apt install build-essential flex bison
+
+macOS:
+  brew install gcc make flex bison
+
+Windows:
+  Use MinGW-w64 and win_flex_bison (which this project's Makefile is configured for).
+
+2. Build and Run Instructions
+-----------------------------
+To build the interpreter:
+  make
+
+To run a Nuva program:
+  ./nuva path/to/script.nv
+
+To clean build artifacts:
+  make clean
+
+To test all examples:
+  make test
+
+3. Syntax Guide
+---------------
+# Comments
+// Single line comment
+/* Multi-line
+   comment */
+
+# Data Types
+Types are inferred dynamically at runtime:
+- int: 64-bit integers (e.g., 42)
+- float: double precision floating point (e.g., 3.14)
+- string: double-quoted strings (e.g., "Hello")
+- bool: true / false
+
+# Variables
+Variables are declared using the 'let' keyword and can be reassigned dynamically.
+  let x = 10;
+  x = x + 1;
+  x += 5;
+  x++;
+
+# Operators and Precedence
+(From lowest to highest precedence)
+1. Assignment: =, +=, -=, *=, /=
+2. Logical OR: ||
+3. Logical AND: &&
+4. Equality: ==, !=
+5. Relational: <, >, <=, >=
+6. Addition/Subtraction: +, -
+7. Multiplication/Division/Modulo: *, /, %
+8. Unary: ! (logical NOT), - (negation)
+9. Postfix: ++, --
+
+# Control Flow
+If / Else:
+  if (x > 5) {
+      show("big");
+  } else if (x == 5) {
+      show("exact");
+  } else {
+      show("small");
+  }
+
+While Loop:
+  while (x < 10) {
+      x++;
+  }
+
+For Loop:
+  for (let i = 0; i < 5; i++) {
+      show(i);
+  }
+
+Repeat Loop (Nuva unique feature):
+  repeat 5 times {
+      show("hello");
+  }
+
+# Functions
+Functions are declared with 'func' and can be recursive.
+  func add(a, b) {
+      return a + b;
+  }
+  let sum = add(3, 4);
+
+4. Grammar Summary (Simplified EBNF)
+------------------------------------
+program    ::= stmts
+stmts      ::= stmt | stmts stmt
+stmt       ::= "let" IDENTIFIER "=" expr ";"
+             | IDENTIFIER "=" expr ";"
+             | IDENTIFIER compound_op expr ";"
+             | IDENTIFIER postfix_op ";"
+             | "show" "(" expr ")" ";"
+             | "if" "(" expr ")" stmt [ "else" stmt ]
+             | "while" "(" expr ")" stmt
+             | "for" "(" stmt opt_expr ";" opt_expr ")" stmt
+             | "repeat" expr "times" stmt
+             | "func" IDENTIFIER "(" param_list ")" block
+             | "return" opt_expr ";"
+             | block
+block      ::= "{" stmts "}"
+expr       ::= INT | FLOAT | STRING | BOOL | IDENTIFIER
+             | expr op expr | unary_op expr | IDENTIFIER "(" arg_list ")"
+
+5. Built-in Functions
+---------------------
+- show(expr)
+  Prints the expression followed by a newline. Auto-coerces numbers to strings during concatenation.
+  Example: show("Result: " + 42);
+
+- ask(prompt)
+  Prints the prompt to the console and waits for the user to input a line of text, returning it as a string.
+  Example: let name = ask("Name? ");
+
+- toNumber(str)
+  Converts a string to an int or float.
+  Example: let num = toNumber("3.14");
+
+- random(min, max)
+  Returns a random integer between min and max (inclusive).
+  Example: let r = random(1, 10);
+
+6. "Hello, Nuva" Quick-Start
+----------------------------
+Create a file 'hello.nv' with the following contents:
+  let name = ask("What is your name? ");
+  show("Hello, " + name + "! Welcome to Nuva.");
+
+Run it:
+  ./nuva hello.nv
+
+7. Known Limitations
+--------------------
+- Single file execution only (no import/include system).
+- No compound data structures (arrays, lists, dictionaries/maps).
+- Functions are not first-class citizens (no closures or passing functions as arguments).
+- No static type checking; type errors (like dividing a string) will crash the interpreter at runtime.
