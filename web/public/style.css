@@ -1,0 +1,199 @@
+:root {
+    --bg-dark: #0f111a;
+    --bg-panel: #1a1c29;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --text-primary: #f8f8f2;
+    --text-secondary: #8b92a5;
+    --accent-color: #00e5ff;
+    --accent-hover: #00b3cc;
+    --error-color: #ff5555;
+    --success-color: #50fa7b;
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'Fira Code', monospace;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background-color: rgba(26, 28, 41, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    height: 60px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo-icon {
+    color: var(--accent-color);
+    font-size: 1.5rem;
+}
+
+h1 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+/* Buttons */
+.run-button {
+    background-color: var(--accent-color);
+    color: #000;
+    border: none;
+    padding: 0.5rem 1.25rem;
+    border-radius: 6px;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 229, 255, 0.2);
+}
+
+.run-button:hover {
+    background-color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0, 229, 255, 0.3);
+}
+
+.run-button:active {
+    transform: translateY(1px);
+}
+
+.run-button.loading {
+    opacity: 0.7;
+    pointer-events: none;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+.icon-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-btn:hover {
+    color: var(--text-primary);
+    background: rgba(255,255,255,0.1);
+}
+
+/* Layout */
+.split-pane {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+.pane {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.editor-pane {
+    border-right: 1px solid var(--border-color);
+}
+
+.pane-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: var(--bg-panel);
+    border-bottom: 1px solid var(--border-color);
+    height: 40px;
+}
+
+.pane-header h2 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Editor Override */
+.CodeMirror {
+    flex: 1;
+    height: auto !important;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.cm-s-material-ocean.CodeMirror {
+    background-color: var(--bg-dark);
+}
+
+/* Terminal */
+.terminal-container {
+    flex: 1;
+    background-color: #000;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+#output {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-break: break-all;
+    color: var(--text-primary);
+}
+
+.output-error {
+    color: var(--error-color);
+}
+
+.output-meta {
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { opacity: 0.7; }
+}
