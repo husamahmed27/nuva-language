@@ -32,8 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch (err) {
                 console.error('Error fetching example:', err);
             }
-            // Reset select so the same file can be selected again
-            e.target.selectedIndex = 0;
         });
     }
 
