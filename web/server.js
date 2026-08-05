@@ -11,6 +11,7 @@ const port = 3000;
 app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
+app.use('/examples', express.static(path.join(__dirname, '..', 'examples')));
 
 // Ensure tmp directory exists
 const tmpDir = path.join(__dirname, 'tmp');

@@ -37,8 +37,22 @@
 
         <main class="split-pane">
             <div class="pane editor-pane">
-                <div class="pane-header">
+                <div class="pane-header" style="display: flex; justify-content: space-between; align-items: center;">
                     <h2>main.nv</h2>
+                    <select id="example-select" style="padding: 4px 8px; border-radius: 4px; border: 1px solid #444; background-color: #1e1e1e; color: #ddd; font-family: inherit; cursor: pointer;">
+                        <option value="" disabled selected>Load example script...</option>
+                        <option value="00_test.nv">00_test.nv</option>
+                        <option value="01_variables.nv">01_variables.nv</option>
+                        <option value="02_arithmetic.nv">02_arithmetic.nv</option>
+                        <option value="03_conditionals.nv">03_conditionals.nv</option>
+                        <option value="04_while_loop.nv">04_while_loop.nv</option>
+                        <option value="05_for_loop.nv">05_for_loop.nv</option>
+                        <option value="06_repeat_loop.nv">06_repeat_loop.nv</option>
+                        <option value="07_functions_recursion.nv">07_functions_recursion.nv</option>
+                        <option value="08_io_input.nv">08_io_input.nv</option>
+                        <option value="09_number_guessing_game.nv">09_number_guessing_game.nv</option>
+                        <option value="10_all_features_demo.nv">10_all_features_demo.nv</option>
+                    </select>
                 </div>
                 <textarea id="code-editor">
 show("Hello from the web!");

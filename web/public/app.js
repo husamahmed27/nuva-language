@@ -14,6 +14,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const runBtn = document.getElementById('run-btn');
     const clearBtn = document.getElementById('clear-btn');
     const outputElem = document.getElementById('output');
+    const exampleSelect = document.getElementById('example-select');
+
+    if (exampleSelect) {
+        exampleSelect.addEventListener('change', async (e) => {
+            const filename = e.target.value;
+            if (!filename) return;
+            try {
+                const response = await fetch('/examples/' + filename);
+                if (response.ok) {
+                    const text = await response.text();
+                    editor.setValue(text);
+                    // Update header if needed, but not strictly required
+                } else {
+                    console.error('Failed to load example:', response.status);
+                }
+            } catch (err) {
+                console.error('Error fetching example:', err);
+            }
+            // Reset select so the same file can be selected again
+            e.target.selectedIndex = 0;
+        });
+    }
 
     // Run code logic
     runBtn.addEventListener('click', async () => {
