@@ -1,4 +1,3 @@
-// Factorial and Fibonacci test
 func factorial(n) {
     if (n <= 1) {
         return 1;

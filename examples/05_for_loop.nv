@@ -1,4 +1,3 @@
-// Test for loop
 show("Counting to 4:");
 for (let i = 0; i < 5; i = i + 1) {
     show(i);

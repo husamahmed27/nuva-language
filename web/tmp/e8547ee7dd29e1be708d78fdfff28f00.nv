@@ -1,3 +1,4 @@
+// Test ask, toNumber and output formatting
 let name = ask("What is your name? ");
 show("Hello, " + name + "!");
 

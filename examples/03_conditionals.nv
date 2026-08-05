@@ -1,4 +1,3 @@
-// Test conditionals / logical ops
 let t = true;
 let f = false;
 

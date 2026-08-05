@@ -40,9 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const code = editor.getValue();
         if (!code.trim()) return;
 
-        const customInputElem = document.getElementById('custom-input');
-        const customInputText = customInputElem ? customInputElem.value : '';
-
         // UI State
         runBtn.classList.add('loading');
         runBtn.innerHTML = `
@@ -51,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <path d="M12 2a10 10 0 0 1 10 10"></path>
             </svg> Running...
         `;
-        
+
         outputElem.innerHTML = '<span class="output-meta">Executing...</span>\n';
 
         try {
@@ -60,13 +57,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ code, input: customInputText })
+                body: JSON.stringify({ code })
             });
 
             const data = await response.json();
 
             outputElem.innerHTML = ''; // Clear meta text
-            
+
             if (data.output) {
                 outputElem.innerHTML += escapeHtml(data.output);
             }
@@ -98,10 +95,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Helper to escape HTML to prevent XSS in the terminal
     function escapeHtml(unsafe) {
         return unsafe
-             .replace(/&/g, "&amp;")
-             .replace(/</g, "&lt;")
-             .replace(/>/g, "&gt;")
-             .replace(/"/g, "&quot;")
-             .replace(/'/g, "&#039;");
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
     }
 });

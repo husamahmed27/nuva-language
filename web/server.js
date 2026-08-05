@@ -20,7 +20,7 @@ if (!fs.existsSync(tmpDir)) {
 }
 
 app.post('/api/run', (req, res) => {
-    const { code, input } = req.body;
+    const { code } = req.body;
     if (!code) {
         return res.status(400).json({ error: 'No code provided' });
     }
@@ -34,8 +34,8 @@ app.post('/api/run', (req, res) => {
 
     // Execute nuva compiler from parent directory
     const nuvaExe = path.join(__dirname, '..', 'nuva.exe');
-    
-    const child = execFile(nuvaExe, [filePath], (error, stdout, stderr) => {
+
+    execFile(nuvaExe, [filePath], (error, stdout, stderr) => {
         // Clean up the temp file
         try {
             fs.unlinkSync(filePath);
@@ -49,11 +49,6 @@ app.post('/api/run', (req, res) => {
             error: stderr || (error ? error.message : '')
         });
     });
-
-    if (input) {
-        child.stdin.write(input);
-    }
-    child.stdin.end();
 });
 
 // Error handling middleware to catch unhandled exceptions
